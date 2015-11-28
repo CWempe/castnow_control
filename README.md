@@ -13,7 +13,45 @@ Create a cronjob for `castnow_watchdog.sh`or execute it via `watch`.
 Let the watchdog run every few seconds (depending on the available performance of your system).
 
 # Integrating in openHAB
-comming soon ...
+`chromecast.items`
+```
+String  CastState       "Status [%s]"   { exec="<[/opt/castnow_control/castnow_get_state.sh state:1000:]" }
+String  CastSource      "Title [%s]"    { exec="<[/opt/castnow_control/castnow_get_state.sh source:1000:]" }
+
+String  CastDown        "Volume -"      {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh down]"     "autoupdate"="false"}
+String  CastUp          "Volume +"      {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh up]"       "autoupdate"="false"}
+String  CastMute        "Mute"          {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh mute]"     "autoupdate"="false"}
+
+String  CastPause       "Pause"         {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh pause]"    "autoupdate"="false"}
+String  CastStop        "Stop"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh stop]"     "autoupdate"="false"}
+String  CastLeft        "Seek backwards"        {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh left]"     "autoupdate"="false"}
+String  CastRight       "Seek forward"          {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh right]"    "autoupdate"="false"}
+
+String  CastQuit        "Quit"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh quit]"     "autoupdate"="false"}
+```
+
+`chromecast.sitemap`
+```
+sitemap chromecast label="Chromecast"
+{
+    Frame label="State" {
+        Text    item=CastState
+        Text    item=CastSource
+    }
+    Frame label="Control" {
+        Switch  item=CastDown
+        Switch  item=CastUp
+        Switch  item=CastMute
+
+        Switch  item=CastPause
+        Switch  item=CastStop
+        Switch  item=CastLeft
+        Switch  item=CastRight
+
+        Switch  item=CastQuit
+    }
+}
+```
 
 # What do the scripts do?
 ## `castnow_get_state.sh`
