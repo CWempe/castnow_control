@@ -13,7 +13,7 @@ Create a cronjob for `castnow_watchdog.sh`or execute it via `watch`.
 Let the watchdog run every few seconds (depending on the available performance of your system).
 
 # Integrating in openHAB
-`chromecast.items`
+## chromecast.items
 ```
 String  CastState       "Status [%s]"   { exec="<[/opt/castnow_control/castnow_get_state.sh state:1000:]" }
 String  CastSource      "Title [%s]"    { exec="<[/opt/castnow_control/castnow_get_state.sh source:1000:]" }
@@ -30,7 +30,7 @@ String  CastRight       "Seek forward"          {exec=">[TOGGLE:/opt/castnow_con
 String  CastQuit        "Quit"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh quit]"     "autoupdate"="false"}
 ```
 
-`chromecast.sitemap`
+## chromecast.sitemap
 ```
 sitemap chromecast label="Chromecast"
 {
