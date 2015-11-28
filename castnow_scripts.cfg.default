@@ -1,0 +1,71 @@
+#!/bin/bash
+################################################################################
+#
+# /opt/castnow_scripts/castnow_scripts.cfg (openhab:openhab, 644)
+#
+# In this file you can define some values that will be used
+# by the different castnow scripts.
+#
+# Copy or rename this file to 'castnow_scripts.cfg'
+#
+# It is recommended to specify the IP address of your Chromecast
+#
+# by Christoph Wempe
+# 2015-11-27
+#
+################################################################################
+
+
+# Castnow will use the first Chromecast device it finds.
+# You can define a specific device by using its name.
+CASTNAME=""
+
+# Castnow searches for devices via mDNS.
+# You can define the IP address of your device to skip the searching process.
+# This is the recommended method.
+CASTIP=""
+
+# Define a name for the screen that will be created
+SCREENNAME="castnow_screen"
+
+# Path to castnow binary
+CASTNOW="/usr/bin/castnow"
+
+# File to store the screen output temporarily
+HARDCOPYFILE="/tmp/hardcopy_$SCREENNAME"
+
+# User to execute screen command
+# Use the same user that runs openhab
+USER="openhab"
+
+
+
+
+#
+# Generate some commands based on the above defined values
+#
+
+# Creating the parameters using when starting castnow
+if [ "$CASTIP" != "" ]
+then
+    # Use IP to find Chromecast
+    CASTNOWPARAM="--address $CASTIP"
+else
+    if [ "$CASTNAME" != "" ]
+    then
+        # Use Chromecast name if no IP is defined
+        CASTNOWPARAM="--device $CASTNAME"
+    else
+        # Use first found Chromecast if nothing is defined
+        CASTNOWPARAM=""
+    fi
+fi
+
+
+# Command to execute other conmmands as the defined user
+if [ "$USER" == "`whoami`" ]
+then 
+    SUDOCMD=""
+else
+    SUDOCMD="sudo -u $USER"
+fi
