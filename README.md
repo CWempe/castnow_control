@@ -41,6 +41,12 @@ Create a cronjob for `castnow_watchdog.sh`or execute it via `watch`.
 Let the watchdog run every few seconds (depending on the available performance of your system).
 
 # Integrating in openHAB
+## exec binding
+Install the exec binding.
+On rasbian:
+```
+sudo apt-get install openhab-addon-binding-exec
+```
 ## chromecast.items
 ```
 String  CastState       "Status [%s]"   { exec="<[/opt/castnow_control/castnow_get_state.sh state:1000:]" }
