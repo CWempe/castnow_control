@@ -6,12 +6,35 @@ Install `screen` via your pakage manager. (e.g. `sudo apt-get install screen`)
 
 Get `castnow` from GitHub: https://github.com/xat/castnow
 
+Here is how it is done on Rasbian Jessie on RaspberryPi.
+
+Add the repository for `nodejs`
+```
+curl -sL https://deb.nodesource.com/setup | sudo bash -
+```
+Install `nodejs` and `screen`.
+```
+sudo apt-get install nodejs screen
+```
+Install castnow
+```
+sudo npm install castnow -g
+```
+
+
 # Install
 Clone this repository or copy the files to your system (e.g. `/opt/castnow_control`)
 
 Copy or rename the default configuration from `castnow_scripts.cfg.default`to `castnow_scripts.cfg`and define your own values.
 
 Chown the folder and files to the same user that will run the scripts. (e.g. `openhab`)
+```
+cd /opt
+sudo git clone https://github.com/CWempe/castnow_control.git
+cd castnow_control
+cp castnow_scripts.cfg.default castnow_scripts.cfg
+chown -R openhab:openhab /opt/castnow_control
+```
 
 Create a cronjob for `castnow_watchdog.sh`or execute it via `watch`.
 
