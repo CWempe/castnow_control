@@ -30,3 +30,7 @@ Because castnow only runs in the foreground in the command line we need a way to
 That is way these scripts use `screen`.
 To get the current state we take a `hardcopy`of the screen/castnow output, save it to a file and parse it.
 We use the `-X stuff`function of `screen`to send keypresses to castnow.
+
+# Limitations/to-do
+- open/start streams via castnow
+- support multiple Chromecast devices at the same time
