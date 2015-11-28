@@ -54,13 +54,13 @@ sitemap chromecast label="Chromecast"
 ```
 
 # What do the scripts do?
-## `castnow_get_state.sh`
+## castnow_get_state.sh
 This script reads the output from castnow and returns the `Status` and/or the `Source` (e.g. title of video).
 
-## `castnow_send_command.sh`
+## castnow_send_command.sh
 This script send commands (e.g. play/pause, mute, stop, Vol+, ...) to castnow.
 
-## `castnow_watchdog.sh`
+## castnow_watchdog.sh
 This script (re)starts castnow if it is not running or lost connection to your Chromecast device.
 
 # How it works
