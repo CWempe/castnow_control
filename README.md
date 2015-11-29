@@ -52,16 +52,16 @@ sudo apt-get install openhab-addon-binding-exec
 String  CastState       "Status [%s]"   { exec="<[/opt/castnow_control/castnow_get_state.sh state:1000:]" }
 String  CastSource      "Title [%s]"    { exec="<[/opt/castnow_control/castnow_get_state.sh source:1000:]" }
 
-String  CastDown        "Volume -"      {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh down]"     "autoupdate"="false"}
-String  CastUp          "Volume +"      {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh up]"       "autoupdate"="false"}
-String  CastMute        "Mute"          {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh mute]"     "autoupdate"="false"}
+String  CastDown        "Volume -"      {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh down]",     "autoupdate"="false"}
+String  CastUp          "Volume +"      {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh up]",       "autoupdate"="false"}
+String  CastMute        "Mute"          {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh mute]",     "autoupdate"="false"}
 
-String  CastPause       "Pause"         {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh pause]"    "autoupdate"="false"}
-String  CastStop        "Stop"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh stop]"     "autoupdate"="false"}
-String  CastLeft        "Seek backwards"        {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh left]"     "autoupdate"="false"}
-String  CastRight       "Seek forward"          {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh right]"    "autoupdate"="false"}
+String  CastPause       "Pause"         {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh pause]",    "autoupdate"="false"}
+String  CastStop        "Stop"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh stop]",     "autoupdate"="false"}
+String  CastLeft        "Seek backwards"        {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh left]",     "autoupdate"="false"}
+String  CastRight       "Seek forward"          {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh right]",    "autoupdate"="false"}
 
-String  CastQuit        "Quit"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh quit]"     "autoupdate"="false"}
+String  CastQuit        "Quit"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh quit]",     "autoupdate"="false"}
 ```
 
 ## chromecast.sitemap
