@@ -43,13 +43,18 @@ $SUDOCMD screen -ls | grep -q "$SCREENNAME"
 
 if [ "`echo $?`" -ne "0" ]
 then
-  echo "castnow is not running anymore!"
-  echo ""
-  echo "Restarting castnow..."
+  if [ "$DEBUG" = "yes" ]
+  then 
+    echo "castnow is not running anymore!"
+    echo ""
+    echo "Restarting castnow..."
+  fi
   $SUDOCMD screen -d -m -S $SCREENNAME $CASTNOW $CASTNOWPARAM
 else
-  echo "castnow is still running"
-
+  if [ "$DEBUG" = "yes" ]
+  then 
+    echo "castnow is still running"
+  fi
   # check current state
   $BASEDIR/castnow_get_state.sh | grep -q "Closed"
 
@@ -57,9 +62,12 @@ else
   # screen will be started next run automatically
   if [ "`echo $?`" -eq "0" ]
   then
-    echo "State is closed. Quit screen..."
+    if [ "$DEBUG" = "yes" ]
+    then 
+      echo "State is closed. Quit screen..."
+      echo "$SUDOCMD screen -X -S $SCREENNAME quit"
+    fi
     $SUDOCMD screen -X -S $SCREENNAME quit
-    echo "$SUDOCMD screen -X -S $SCREENNAME quit"
   fi
 
 fi

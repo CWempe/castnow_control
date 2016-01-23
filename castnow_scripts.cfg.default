@@ -38,6 +38,8 @@ HARDCOPYFILE="/tmp/hardcopy_$SCREENNAME"
 # Use the same user that runs openhab
 USER="openhab"
 
+# Enable debug mode
+DEBUG="no"
 
 
 
