@@ -6,33 +6,62 @@ Install `screen` via your pakage manager. (e.g. `sudo apt-get install screen`)
 
 Get `castnow` from GitHub: https://github.com/xat/castnow
 
+Here is how it is done on Rasbian Jessie on RaspberryPi.
+
+Add the repository for `nodejs`
+```
+curl -sL https://deb.nodesource.com/setup | sudo bash -
+```
+Install `nodejs` and `screen`.
+```
+sudo apt-get install nodejs screen
+```
+Install castnow
+```
+sudo npm install castnow -g
+```
+
+
 # Install
 Clone this repository or copy the files to your system (e.g. `/opt/castnow_control`)
 
 Copy or rename the default configuration from `castnow_scripts.cfg.default`to `castnow_scripts.cfg`and define your own values.
 
 Chown the folder and files to the same user that will run the scripts. (e.g. `openhab`)
+```
+cd /opt
+sudo git clone https://github.com/CWempe/castnow_control.git
+cd castnow_control
+cp castnow_scripts.cfg.default castnow_scripts.cfg
+chown -R openhab:openhab /opt/castnow_control
+```
 
 Create a cronjob for `castnow_watchdog.sh`or execute it via `watch`.
 
 Let the watchdog run every few seconds (depending on the available performance of your system).
 
 # Integrating in openHAB
+## exec binding
+Install the exec binding.
+On rasbian:
+```
+sudo apt-get install openhab-addon-binding-exec
+```
 ## chromecast.items
 ```
 String  CastState       "Status [%s]"   { exec="<[/opt/castnow_control/castnow_get_state.sh state:1000:]" }
 String  CastSource      "Title [%s]"    { exec="<[/opt/castnow_control/castnow_get_state.sh source:1000:]" }
 
-String  CastDown        "Volume -"      {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh down]"     "autoupdate"="false"}
-String  CastUp          "Volume +"      {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh up]"       "autoupdate"="false"}
-String  CastMute        "Mute"          {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh mute]"     "autoupdate"="false"}
+String  CastDown        "Volume -"      {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh down]",     "autoupdate"="false"}
+String  CastUp          "Volume +"      {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh up]",       "autoupdate"="false"}
+String  CastMute        "Mute"          {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh mute]",     "autoupdate"="false"}
 
-String  CastPause       "Pause"         {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh pause]"    "autoupdate"="false"}
-String  CastStop        "Stop"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh stop]"     "autoupdate"="false"}
-String  CastLeft        "Seek backwards"        {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh left]"     "autoupdate"="false"}
-String  CastRight       "Seek forward"          {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh right]"    "autoupdate"="false"}
+String  CastPause       "Pause"         {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh pause]",    "autoupdate"="false"}
+String  CastStop        "Stop"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh stop]",     "autoupdate"="false"}
+String  CastLeft        "Seek backwards"        {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh left]",     "autoupdate"="false"}
+String  CastRight       "Seek forward"          {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh right]",    "autoupdate"="false"}
 
-String  CastQuit        "Quit"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh quit]"     "autoupdate"="false"}
+String  CastQuit        "Quit"  {exec=">[TOGGLE:/opt/castnow_control/castnow_send_command.sh quit]",     "autoupdate"="false"}
 ```
 
 ## chromecast.sitemap
