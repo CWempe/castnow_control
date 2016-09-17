@@ -80,3 +80,5 @@ We use the `-X stuff`function of `screen`to send keypresses to castnow.
 # Limitations/to-do
 - open/start streams via castnow
 - support multiple Chromecast devices at the same time
+- push buttons do not work correctly in HABdroid and iOS app
+  see: https://community.openhab.org/t/habdroid-not-supporting-push-buttons-toggle/4604
